@@ -1,6 +1,9 @@
 /*
-Given a list of integers, write a function that returns the largest sum of non-adjacent numbers. Numbers can be 0 or negative.
-For example, [2, 4, 6, 2, 5] should return 13, since we pick 2, 6, and 5. [5, 1, 1, 5] should return 10, since we pick 5 and 5.
+Given a list of integers, write a function that returns the largest sum of non-adjacent numbers.
+    Numbers can be 0 or negative.
+
+For example, [2, 4, 6, 2, 5] should return 13, since we pick 2, 6, and 5. [5, 1, 1, 5] should return
+    10, since we pick 5 and 5.
 
 Solution:
     First, you never want to add on a negative number, so set all negatives to 0 (so adding them is
@@ -9,14 +12,25 @@ Solution:
     Second, observe that given an extra value, you will either want to add it to the highest value
         from two before, or three values before. You can't add it to the value one before (because
         the problem said so) and adding to four before is always worse than adding to two before
-        since two before has already added onto four before.
+        since you can add to both two and four before.
 
     Therefore, at any time, there are four possible best options:
         two values for the current value (2/3 before), and two values from skipping the current value
         and using one of the two best options from the previous number.
 
+    Thus, we can do a single pass through the input and update the four possible best values each
+        iteration. Thus, we achieve O(n) performance.
 
 */
+
+macro_rules! max {
+    ($a:expr) => {
+        $a
+    };
+    ($a:expr, $($x:expr),*) => {
+        std::cmp::max($a, max!($($x),*))
+    };
+}
 
 pub fn max_sum(input: &Vec<i32>) -> i32 {
     // remove negative numbers
@@ -32,12 +46,11 @@ pub fn max_sum(input: &Vec<i32>) -> i32 {
 
         // switch the best pointers and update them ready for next round
         std::mem::swap(&mut bests, &mut bests_other);
-        bests.0 = bests.0.max(bests.1);
+        bests.0 = max!(bests.0, bests.1);
         bests_other.1 = bests.0;
     }
 
-    // get the best of the values
-    bests.0.max(bests.1).max(bests_other.0.max(bests_other.1))
+    max!(bests.0, bests.1, bests_other.0, bests_other.1)
 
 }
 
