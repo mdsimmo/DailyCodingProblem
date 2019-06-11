@@ -1,0 +1,8 @@
+[package]
+name = "prob_0003"
+version = "0.1.0"
+authors = ["mdsimmo <mdsimmo2+git@gmail.com>"]
+
+[dependencies]
+serde = { version="1.0.92", features = ["derive"]}
+serde_json = "1.0"
