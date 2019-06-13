@@ -1,4 +1,13 @@
 
+/*
+Implement an autocomplete system. That is, given a query string s and a set of all possible query strings, return all strings in the set that have s as a prefix.
+
+For example, given the query string de and the set of strings [dog, deer, deal], return [deer, deal].
+
+Hint: Try preprocessing the dictionary into a more efficient data structure to speed up queries.
+*/
+
+
 #[derive(Debug, PartialEq)]
 pub struct Set<'a> {
     set: Vec<&'a str>
@@ -35,7 +44,7 @@ impl <'a> Set<'a> {
             Err(n) => n,
         };
         let end_index = match self.set.binary_search_by(|&s| s.cmp(end_mark)) {
-            Ok(n) => n-1,
+            Ok(n) => n,
             Err(n) => n
         };
 
@@ -81,5 +90,14 @@ mod test {
         let set = Set::new(&vec![]);
 
         assert_eq!(set.query("bob"), &[] as &[&str]);
+    }
+
+    #[test]
+    fn test_prefix_matches_word() {
+        let set = Set::new(&vec!["a", "b", "bob", "bab", "c"]);
+
+        assert_eq!(set.query("b"), &["b", "bab", "bob"]);
+        assert_eq!(set.query("bab"), &["bab"]);
+        assert_eq!(set.query("bob"), &["bob"]);
     }
 }
