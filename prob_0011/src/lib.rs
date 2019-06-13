@@ -39,16 +39,19 @@ impl <'a> Set<'a> {
         end_mark.push((start_mark.chars().last().unwrap() as u8 + 1) as char);
         let end_mark = &end_mark[..];
 
+        // remove everything before the start mark
         let start_index = match self.set.binary_search_by(|&s| s.cmp(prefix)) {
             Ok(n) => n,
             Err(n) => n,
         };
-        let end_index = match self.set.binary_search_by(|&s| s.cmp(end_mark)) {
+        let end_half = self.set.split_at(start_index).1;
+
+        // remove everything after the end mark
+        let end_index = match end_half.binary_search_by(|&s| s.cmp(end_mark)) {
             Ok(n) => n,
             Err(n) => n
         };
-
-        self.set.split_at(start_index).1.split_at(end_index-start_index).0
+        end_half.split_at(end_index).0
     }
 }
 
