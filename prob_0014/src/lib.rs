@@ -9,20 +9,20 @@ use rayon::prelude::*;
 
 pub fn pi() -> f32 {
     // The area of on quadrant of a circle:
-    // a = 1 / 4 * p * r ^ 2;
-    // thus, p = a * 4 / r ^ 2
-    // thus, if r = 2, p = a
+    // area = 1 / 4 * pi * r ^ 2;
+    // thus, pi = area * 4 / r ^ 2
+    // thus, if r = 2, pi = area
 
     let r = 2.0;
     let steps = 100;
-    // Sum area in top right quadrant by rectangle method
+    // Sum area in top right quadrant by summing rectangle method
     return (0..steps)
         .into_par_iter()
-        // convert i to x
+        // convert i to x (x=i*dx)
         .map(|i| i as f32 * r / steps as f32)
-        // convert x to y by moving down from r until we are smaller than needed.
+        // convert x to y by moving y down from r until y is smaller than needed.
         // We could also use y=sqrt(r^2-x^2), but I feel that's cheating; it
-        // also results in much more iterations being needed to get same accuracy
+        // also results in many more iterations being needed to get same accuracy
         // (no idea why - maybe just coincident?)
         .map(|x| (0..=steps)
             .rev()
@@ -31,7 +31,9 @@ pub fn pi() -> f32 {
             .next()
             .unwrap_or(0.0)
         )
+        // convert y to rectangle area (a=y*dx)
         .map(|y| y * r / steps as f32 )
+        // sum rectangle areas
         .sum();
 }
 
