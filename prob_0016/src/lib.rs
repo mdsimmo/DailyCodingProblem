@@ -30,11 +30,11 @@ impl <T> RingList<T> {
         }
     }
 
-    pub fn get(&self, i: usize) -> Option<&T> {
+    pub fn get_last(&self, i: usize) -> Option<&T> {
         if i >= self.len {
             None
         } else {
-            self.elements[(i + self.start) % self.len].as_ref()
+            self.elements[(self.len - i + self.start - 1) % self.len].as_ref()
         }
     }
 
@@ -47,12 +47,12 @@ impl <T> RingList<T> {
         self.elements[(self.len + self.start - 1) % self.len] = Some(elem);
     }
 
-    pub fn first(&self) -> Option<&T> {
-        self.get(0)
+    pub fn oldest(&self) -> Option<&T> {
+        self.get_last(self.len-1)
     }
 
-    pub fn last(&self) -> Option<&T> {
-        self.get(self.len-1)
+    pub fn latest(&self) -> Option<&T> {
+        self.get_last(0)
     }
 }
 
@@ -65,7 +65,7 @@ mod test {
         let mut list = RingList::new();
         list.record(2);
 
-        assert_eq!(list.get(0), Some(&2));
+        assert_eq!(list.get_last(0), Some(&2));
     }
 
     #[test]
@@ -77,10 +77,10 @@ mod test {
         }
 
         // N is 4, so should only be 3 elements
-        assert_eq!(list.get(3), Some(&3));
-        assert_eq!(list.get(2), Some(&2));
-        assert_eq!(list.get(1), Some(&1));
-        assert_eq!(list.get(0), Some(&0));
+        assert_eq!(list.get_last(0), Some(&3));
+        assert_eq!(list.get_last(1), Some(&2));
+        assert_eq!(list.get_last(2), Some(&1));
+        assert_eq!(list.get_last(3), Some(&0));
     }
 
     #[test]
@@ -92,10 +92,10 @@ mod test {
         }
 
         // N is 4, so should only be 3 elements
-        assert_eq!(list.get(3), Some(&4));
-        assert_eq!(list.get(2), Some(&3));
-        assert_eq!(list.get(1), Some(&2));
-        assert_eq!(list.get(0), Some(&1));
+        assert_eq!(list.get_last(0), Some(&4));
+        assert_eq!(list.get_last(1), Some(&3));
+        assert_eq!(list.get_last(2), Some(&2));
+        assert_eq!(list.get_last(3), Some(&1));
     }
 
 
@@ -108,10 +108,10 @@ mod test {
         }
 
         // N is 4, so should only be 3 elements
-        assert_eq!(list.get(3), Some(&50));
-        assert_eq!(list.get(2), Some(&49));
-        assert_eq!(list.get(1), Some(&48));
-        assert_eq!(list.get(0), Some(&47));
+        assert_eq!(list.get_last(0), Some(&50));
+        assert_eq!(list.get_last(1), Some(&49));
+        assert_eq!(list.get_last(2), Some(&48));
+        assert_eq!(list.get_last(3), Some(&47));
     }
 
     #[test]
@@ -122,21 +122,21 @@ mod test {
             list.record(i);
         }
 
-        assert_eq!(list.last(), Some(&25));
-        assert_eq!(list.first(), Some(&22));
+        assert_eq!(list.latest(), Some(&25));
+        assert_eq!(list.oldest(), Some(&22));
     }
 
     #[test]
     fn get_out_of_bounds() {
         let mut list = RingList::new();
 
-        assert_eq!(list.get(0), None);
+        assert_eq!(list.get_last(0), None);
 
         for i in 0..5 {
             list.record(i);
         }
 
-        assert_eq!(list.get(4), None);
-        assert_eq!(list.get(6), None);
+        assert_eq!(list.get_last(4), None);
+        assert_eq!(list.get_last(6), None);
     }
 }
