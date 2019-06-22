@@ -9,6 +9,8 @@ You should be as efficient with time and space as possible.
 Solution:
 Use a ring list (aka cyclic list)
 
+Time to complete: 50 min
+
 */
 
 // Size of a RingList (rust seriously needs constant generics!!)

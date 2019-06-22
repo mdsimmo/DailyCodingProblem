@@ -1,3 +1,9 @@
+/**
+Implement a job scheduler which takes in a function f and an integer n, and calls f after n milliseconds.
+
+Time to complete: 50min
+*/
+
 extern crate prob_0010;
 
 use prob_0010::schedule;

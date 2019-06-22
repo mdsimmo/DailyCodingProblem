@@ -13,6 +13,8 @@ Solution notes:
 
     It also isn't particularly clean (lots of indexes and fidgety stuff)
 
+Time to complete: 1h 2min
+
 */
 
 pub fn longest(s: &str, k: usize) -> &str {

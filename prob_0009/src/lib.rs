@@ -21,6 +21,8 @@ Solution:
     Thus, we can do a single pass through the input and update the four possible best values each
         iteration. Thus, we achieve O(n) performance.
 
+Time to complete: 2h 30min
+
 */
 
 macro_rules! max {

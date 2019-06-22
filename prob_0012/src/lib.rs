@@ -10,6 +10,8 @@ For example, if N is 4, then there are 5 unique ways:
     2, 2
 
 What if, instead of being able to climb 1 or 2 steps at a time, you could climb any number from a set of positive integers X? For example, if X = {1, 3, 5}, you could climb 1, 3, or 5 steps at a time.
+
+Time to complete: 1h 25min
 */
 
 pub fn possibilities(steps_remaining: u32, step_choices: &[u32]) -> u32 {

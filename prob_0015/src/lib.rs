@@ -5,6 +5,9 @@ the stream with uniform probability.
 Solution:
 Iterate over the elements and at each element, give a small chance to choose that value.
 The chance to pick the value needs is 1/num_elements_iterated.
+
+Time to complete: 2h 10 min
+
 */
 
 extern crate rand;
