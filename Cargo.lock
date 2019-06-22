@@ -192,20 +192,14 @@ dependencies = [
 [[package]]
 name = "prob_0016"
 version = "0.1.0"
-dependencies = [
- "map_in_place 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
- "rand 0.6.5 (registry+https://github.com/rust-lang/crates.io-index)",
- "rayon 1.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
-]
 
 [[package]]
 name = "prob_0017"
 version = "0.1.0"
-dependencies = [
- "map_in_place 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
- "rand 0.6.5 (registry+https://github.com/rust-lang/crates.io-index)",
- "rayon 1.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
-]
+
+[[package]]
+name = "prob_0020"
+version = "0.1.0"
 
 [[package]]
 name = "proc-macro2"
