@@ -5,5 +5,4 @@ authors = ["mdsimmo <mdsimmo2+git@gmail.com>"]
 
 [dependencies]
 rand = "0.6.5"
-map_in_place = "0.1.0"
 rayon = "1.1"

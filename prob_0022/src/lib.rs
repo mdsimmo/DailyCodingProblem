@@ -15,22 +15,18 @@ Time to complete: 30min
 
 */
 
-
-pub fn words<'a>(dict: &'a [&str], sentence: &'a str) -> Vec<Vec<&'a str>> {
+pub fn words<'a>(dict: &'a [&str], sentence: &str) -> Vec<Vec<&'a str>> {
     let mut results = vec![];
-    for word in dict {
-        if sentence.starts_with(word) {
-            let (head, tail) = sentence.split_at(word.len());
-            if tail.is_empty() {
-                results.push(vec![head]);
+    for &word in dict {
+        if sentence.ends_with(word) {
+            let (head, _) = sentence.split_at(sentence.len()-word.len());
+            if head.is_empty() {
+                results.push(vec![word]);
             } else {
-                let mut possibilities: Vec<Vec<&str>> = words(dict, tail).iter_mut()
-                    .map(|data| {
-                        let mut vec = vec![head];
-                        vec.append(data);
-                        vec
-                    })
-                    .collect();
+                let mut possibilities: Vec<Vec<&str>> = words(dict, head);
+                for data in possibilities.iter_mut() {
+                    data.push(word);
+                }
                 results.append(&mut possibilities);
             }
         }
