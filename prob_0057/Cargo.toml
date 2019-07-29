@@ -1,0 +1,7 @@
+[package]
+name = "prob_0057"
+version = "0.1.0"
+authors = ["mdsimmo <mdsimmo2+git@gmail.com>"]
+
+[dependencies]
+rand = "0.7.0"
