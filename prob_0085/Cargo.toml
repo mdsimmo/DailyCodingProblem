@@ -1,8 +1,6 @@
 [package]
-name = "prob_0064"
+name = "prob_0085"
 version = "0.1.0"
 authors = ["mdsimmo <mdsimmo2+git@gmail.com>"]
 
 [dependencies]
-ndarray = "0.12.1"
-rayon = "1.1.0"
