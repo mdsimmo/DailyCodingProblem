@@ -62,6 +62,7 @@ macro_rules! tree {
 
 }
 
+#[macro_export]
 macro_rules! node {
     ({$($x:expr => $v:tt),*} $val:expr => $sub:tt, $($rest:tt)*) => {
         node!({$($x => $v,)* $val => $sub} $($rest)*)
