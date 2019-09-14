@@ -40,8 +40,6 @@ pub fn shortest_substring<'a>(string: &'a str, chars: &HashSet<char>) -> Option<
         }
     }
 
-    println!("Lookup: {:?}", lookup);
-
     // Find the shortest set of letters
     let indexes = shortest(&lookup, vec![]);
     Some(&string[indexes])
