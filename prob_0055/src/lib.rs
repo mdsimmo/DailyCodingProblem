@@ -49,8 +49,8 @@ impl Shortener {
         let mut short = String::with_capacity(6);
         for _ in 0..6 {
             let letter = match rnd.gen_range(0, 26*2+10) {
-                n @ 0...26 => ('a' as u8 + n) as char,
-                n @ 26...52 => ('A' as u8 + n) as char,
+                n @ 0..=26 => ('a' as u8 + n) as char,
+                n @ 26..=52 => ('A' as u8 + n) as char,
                 n => ('0' as u8 + n) as char,
             };
             short.push(letter)

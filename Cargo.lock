@@ -326,11 +326,42 @@ dependencies = [
 ]
 
 [[package]]
+name = "prob_0064"
+version = "0.1.0"
+dependencies = [
+ "ndarray 0.12.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "rayon 1.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
 name = "prob_0069"
 version = "0.1.0"
 
 [[package]]
 name = "prob_0070"
+version = "0.1.0"
+
+[[package]]
+name = "prob_0085"
+version = "0.1.0"
+
+[[package]]
+name = "prob_0090"
+version = "0.1.0"
+dependencies = [
+ "rand 0.7.0 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
+name = "prob_0092"
+version = "0.1.0"
+
+[[package]]
+name = "prob_0102"
+version = "0.1.0"
+
+[[package]]
+name = "prob_0103"
 version = "0.1.0"
 
 [[package]]

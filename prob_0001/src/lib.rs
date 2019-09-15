@@ -1,6 +1,6 @@
 use std::collections::HashSet;
 
-fn any_two_adds_to_target(input: &Vec<i32>, target: i32) -> bool {
+pub fn any_two_adds_to_target(input: &Vec<i32>, target: i32) -> bool {
 
     let mut result = false;
     let mut needed = HashSet::with_capacity(input.len());

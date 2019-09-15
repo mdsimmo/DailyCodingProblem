@@ -32,7 +32,7 @@ fn find_first_positive(input: &[i32]) -> i32 {
     return input.len() as i32 + 1;
 }
 
-fn solve(input: &mut [i32]) -> i32 {
+pub fn solve(input: &mut [i32]) -> i32 {
     let mut input = strip_negatives(input);
     let input = mark_indexs(&mut input);
     find_first_positive(input)

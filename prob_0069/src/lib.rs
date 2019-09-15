@@ -12,8 +12,7 @@ pub fn largest_multiple(numbers: &Vec<i32>) -> i32 {
     let mut largest = vec![0, 0, 0];
     let _a = 10i32.abs();
     for &i in numbers {
-        let smallest = largest.clone().iter().enumerate().min_by_key(|(_, x)| x);
-        match smallest {
+        match largest.clone().iter().enumerate().min_by_key(|(_, &x)| x) {
             None => {
                 largest.push(i);
 

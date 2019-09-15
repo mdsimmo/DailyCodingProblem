@@ -1,9 +1,9 @@
-fn product_with_div(input: &Vec<i32>) -> Vec<i32> {
+pub fn product_with_div(input: &Vec<i32>) -> Vec<i32> {
     let mult: i32 = input.iter().product();
     input.iter().map(|x| mult/(*x)).collect()
 }
 
-fn product_without_div(input: &Vec<i32>) -> Vec<i32> {
+pub fn product_without_div(input: &Vec<i32>) -> Vec<i32> {
     input.iter().enumerate().map(
         |(i, _)| {
             let left: i32 = input.iter().take(i).product();
