@@ -1,17 +1,13 @@
-fn cons<'c, 'a: 'c, 'b: 'a+'c, T>(a: &'a T, b: &'b T) -> impl Fn(&dyn Fn(&'a T, &'b T) -> &'c T) -> &'c T {
+pub fn cons<'c, 'a: 'c, 'b: 'a+'c, T>(a: &'a T, b: &'b T) -> impl Fn(&dyn Fn(&'a T, &'b T) -> &'c T) -> &'c T {
     move |f| f(&a, &b)
 }
 
-fn car<'c, 'a: 'c, 'b: 'c, T>(pair: &dyn Fn(&dyn Fn(&'a T, &'b T) -> &'c T) -> &'c T) -> &'c T {
+pub fn car<'c, 'a: 'c, 'b: 'c, T>(pair: &dyn Fn(&dyn Fn(&'a T, &'b T) -> &'c T) -> &'c T) -> &'c T {
     pair(&|a, _b| a)
 }
 
-fn cdr<'c, 'a: 'c, 'b: 'c, T>(pair: &dyn Fn(&dyn Fn(&'a T, &'b T) -> &'c T) -> &'c T) -> &'c T {
+pub fn cdr<'c, 'a: 'c, 'b: 'c, T>(pair: &dyn Fn(&dyn Fn(&'a T, &'b T) -> &'c T) -> &'c T) -> &'c T {
     pair(&|_a, b| b)
-}
-
-fn main() {
-    println!("{}", cdr(&cons(&1, &2)));
 }
 
 #[cfg(test)]
